@@ -6,5 +6,11 @@
 <body>
     <h1>{{ nome_empresa }}</h1>
 
+    <p>Nossos Produtos:</p>
+    <ul>
+    {% for i in produtos %}
+    <li>{{ i }}</li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
