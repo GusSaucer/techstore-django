@@ -1,13 +1,6 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
- <title>Página Dinâmica</title>
- <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    <h1>{{ nome_empresa }}</h1>
-    <button class="btn-primary">CLIQUE AQUI</button>
+{% extends 'base.html' %}
+{% block content %}
+
 
     <p>Nossos Produtos:</p>
     <ul>
@@ -15,5 +8,5 @@
     <li>{{ i }}</li>
     {% endfor %}
     </ul>
-</body>
-</html>
+
+    {% endblock %}

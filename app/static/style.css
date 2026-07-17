@@ -1,50 +1,113 @@
 /* ==========================================================================
    TechStore - Custom Design System (Extensão para Bootstrap 5)
-   Branding: Sapo Tech (Vibe Tecnológica e Orgânica)
+   Foco: Navbar Preta, Fundo Cinza Neutro, Verde Apenas para CTAs
    ========================================================================== */
 
-/* --- Variáveis Globais (Sincronizadas com o base.html) --- */
 :root {
     /* Cores da Paleta */
-    --color-dark: #282828;       /* Preto Carbono */
-    --color-grey-light: #cfcfcf; /* Cinza Neutro (Bordas) */
-    --color-mint-bg: #dee8d6;    /* Cinza Menta (Fundo) */
-    --color-neon-green: #afd22a; /* Verde Limão (Hover / Ativo) */
-    --color-cta-green: #1da532;  /* Verde Sapo (CTA Principal) */
+    --color-dark: #282828;       /* Preto Carbono (Navbar, Footer, Texto Principal) */
+    --color-grey-base: #cfcfcf;  /* Cinza Neutro (Fundo Principal da Loja) */
+    --color-mint-soft: #dee8d6;  /* Cinza Menta (Fundo Secundário de Cards) */
+    --color-neon-green: #afd22a; /* Verde Limão (Hover do CTA / Destaques Urgentes) */
+    --color-cta-green: #1da532;  /* Verde Sapo (CTA Principal de Conversão) */
     
     /* Apoio de UI */
     --color-white: #ffffff;
     --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     
-    /* Bordas padrão para manter consistência */
     --border-radius-sm: 6px;
     --border-radius-md: 12px;
     --border-radius-lg: 20px;
 }
 
 /* ==========================================================================
-   1. Ajustes de Layout & Reset de Suporte
+   1. Ajustes de Layout & Reset
    ========================================================================== */
 body {
-    background-color: var(--color-mint-bg);
+    background-color: var(--color-grey-base); /* Fundo Cinza Neutro */
     color: var(--color-dark);
 }
 
 /* ==========================================================================
-   2. Componentes de E-commerce (Customizados)
+   2. NAVBAR & FOOTER (Pretos, Sólidos e Limpos)
    ========================================================================== */
-
-/* --- Grid de Produtos (Perfeito para usar com as classes de Grid do Bootstrap) --- */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
+.navbar-techstore {
+    background-color: var(--color-dark) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Divisor sutil e elegante */
 }
 
-/* --- Card de Produto --- */
+.navbar-techstore .navbar-brand {
+    color: var(--color-white) !important;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* O Sapo da logo agora é neutro/branco na navbar para não competir com os CTAs */
+.brand-frog {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+
+.navbar-techstore .nav-link {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.navbar-techstore .nav-link:hover,
+.navbar-techstore .nav-link.active {
+    color: var(--color-white) !important; /* Links ficam brancos no foco/hover */
+}
+
+/* Botão de Carrinho na Navbar (Neutro para não brigar com o CTA principal de compra) */
+.btn-cart {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-white);
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.btn-cart:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: var(--color-white);
+}
+
+/* Rodapé Preto */
+.footer-techstore {
+    background-color: var(--color-dark) !important;
+    color: rgba(255, 255, 255, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-techstore h5 {
+    color: var(--color-white);
+    font-weight: 700;
+}
+
+.footer-techstore a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.footer-techstore a:hover {
+    color: var(--color-white);
+}
+
+/* ==========================================================================
+   3. Componentes de E-commerce (Card de Produto)
+   ========================================================================== */
 .product-card {
     background-color: var(--color-white);
-    border: 1px solid rgba(40, 40, 40, 0.08);
+    border: 1px solid rgba(40, 40, 40, 0.1);
     border-radius: var(--border-radius-lg);
     padding: 1.5rem;
     transition: var(--transition-smooth);
@@ -56,23 +119,22 @@ body {
     overflow: hidden;
 }
 
-/* Efeito de hover premium */
 .product-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(40, 40, 40, 0.08);
-    border-color: var(--color-neon-green);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    border-color: var(--color-dark); /* Borda escura no hover para manter sobriedade */
 }
 
-/* Container de Imagem do Produto */
+/* Fundo do produto levemente puxado para o menta suave para contraste com o cinza do body */
 .product-card-img-wrapper {
-    background-color: rgba(222, 232, 214, 0.3); /* Fundo menta bem suave para destacar o produto */
+    background-color: var(--color-mint-soft); 
     border-radius: var(--border-radius-md);
     padding: 1.5rem;
     margin-bottom: 1.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 1 / 1; /* Mantém a imagem sempre quadrada */
+    aspect-ratio: 1 / 1;
 }
 
 .product-card-img-wrapper img {
@@ -83,27 +145,25 @@ body {
 }
 
 .product-card:hover .product-card-img-wrapper img {
-    transform: scale(1.05); /* Zoom sutil no produto ao passar o mouse */
+    transform: scale(1.05);
 }
 
-/* Selos / Badges (Desconto, Lançamento) */
+/* Badges e Preços */
 .product-card .badge-tech {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background-color: var(--color-neon-green);
-    color: var(--color-dark);
+    background-color: var(--color-cta-green); /* Badge usa o verde para chamar atenção */
+    color: var(--color-white);
     font-size: 0.75rem;
     font-weight: 800;
     padding: 0.35rem 0.75rem;
     border-radius: var(--border-radius-sm);
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 10px rgba(175, 210, 42, 0.2);
     z-index: 2;
 }
 
-/* Informações do Produto */
 .product-card-title {
     font-size: 1.1rem;
     font-weight: 700;
@@ -115,15 +175,15 @@ body {
 .product-card-price {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--color-cta-green); /* Destaca o valor no verde principal */
+    color: var(--color-dark); /* Preço sóbrio para destacar o botão verde de compra */
     margin-bottom: 1.25rem;
 }
 
 /* ==========================================================================
-   3. Botões & Inputs (Sobrescritas e Ajustes Finos)
+   4. Botões (O VERDE ATIVO DE VERDADE)
    ========================================================================== */
 
-/* Botão Primário TechStore (Verde Sapo) */
+/* Botão Primário (CTA do carrinho e compra) */
 .btn-tech-primary {
     background-color: var(--color-cta-green) !important;
     border-color: var(--color-cta-green) !important;
@@ -137,12 +197,12 @@ body {
 .btn-tech-primary:hover {
     background-color: var(--color-neon-green) !important;
     border-color: var(--color-neon-green) !important;
-    color: var(--color-dark) !important;
+    color: var(--color-dark) !important; /* Texto escuro para acessibilidade no verde-limão */
     box-shadow: 0 6px 20px rgba(175, 210, 42, 0.35);
     transform: translateY(-1px);
 }
 
-/* Botão Secundário TechStore (Preto Carbono) */
+/* Botão Secundário (Ações administrativas ou informativas) */
 .btn-tech-secondary {
     background-color: var(--color-dark) !important;
     border-color: var(--color-dark) !important;
@@ -159,32 +219,8 @@ body {
     transform: translateY(-1px);
 }
 
-/* Customização para Inputs (Inputs do Bootstrap com foco personalizado) */
+/* Inputs com foco */
 .form-control:focus {
     border-color: var(--color-cta-green) !important;
-    box-shadow: 0 0 0 0.25rem rgba(29, 165, 50, 0.15) !important;
-}
-
-/* ==========================================================================
-   4. Seções Especiais do E-commerce
-   ========================================================================== */
-
-/* Banner Principal (Hero Section) */
-.hero-section {
-    background-color: var(--color-dark);
-    color: var(--color-white);
-    border-radius: var(--border-radius-lg);
-    padding: 4rem 2rem;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 4px solid var(--color-neon-green);
-}
-
-.hero-section h1 {
-    font-weight: 800;
-    letter-spacing: -1px;
-}
-
-.hero-section .text-highlight {
-    color: var(--color-neon-green);
+    box-shadow: 0 0 0 0.25rem rgba(29, 165, 50, 0.2) !important;
 }

@@ -20,6 +20,6 @@ def status_view(request):
     context = {
         'id_servidor': '145761',
         'status_sistema': '200 OK',
-        'admin':False,
+        'admin':True,
     }
     return render(request,'status.html', context)
