@@ -1,0 +1,352 @@
+/* ============================================
+   TECHSTORE - IDENTIDADE VISUAL DARK MODE
+   Paleta: #1D1D42, #4E2ECF, #FF7A01, #FE9100, #FFFFFF
+   ============================================ */
+
+/* ===== RESET E SOBRESCRITA DO BOOTSTRAP ===== */
+:root {
+    --ts-dark: #1D1D42;
+    --ts-purple: #4E2ECF;
+    --ts-orange-dark: #FF7A01;
+    --ts-orange-light: #FE9100;
+    --ts-white: #FFFFFF;
+    --ts-dark-light: #2a2a55;
+    --ts-dark-lighter: #3a3a6a;
+}
+
+/* FORÇAR BACKGROUND ESCURO EM TODA PÁGINA */
+html, body {
+    background-color: #0d0d20 !important;
+    color: #e8e8f0 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+.navbar-techstore {
+    background: linear-gradient(135deg, #1a1a3a, #252550) !important;
+    border-bottom: 3px solid var(--ts-purple) !important;
+    box-shadow: 0 4px 30px rgba(78, 46, 207, 0.2) !important;
+    padding: 1rem 0 !important;
+}
+
+.navbar-techstore .navbar-brand {
+    color: #FFFFFF !important;
+    font-weight: 800 !important;
+    font-size: 1.8rem !important;
+    letter-spacing: -0.5px !important;
+}
+
+.navbar-techstore .navbar-brand .brand-frog {
+    font-size: 2rem !important;
+    margin-right: 10px !important;
+}
+
+.navbar-techstore .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 600 !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+}
+
+.navbar-techstore .nav-link:hover,
+.navbar-techstore .nav-link.active {
+    color: #FFFFFF !important;
+    background: rgba(78, 46, 207, 0.3) !important;
+}
+
+.navbar-techstore .nav-link.active {
+    border-bottom: 3px solid var(--ts-orange-light) !important;
+}
+
+/* ===== BOTÕES ===== */
+.btn-tech-primary {
+    background: linear-gradient(135deg, #FF7A01, #FE9100) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    padding: 0.6rem 1.4rem !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(255, 122, 1, 0.3) !important;
+}
+
+.btn-tech-primary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(255, 122, 1, 0.5) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-tech-secondary {
+    background: #4E2ECF !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    padding: 0.6rem 1.4rem !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(78, 46, 207, 0.3) !important;
+}
+
+.btn-tech-secondary:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(78, 46, 207, 0.5) !important;
+    color: #FFFFFF !important;
+    background: #6b4edb !important;
+}
+
+.btn-cart {
+    background: rgba(78, 46, 207, 0.2) !important;
+    color: #FFFFFF !important;
+    border: 2px solid #4E2ECF !important;
+    border-radius: 10px !important;
+    padding: 0.6rem 1.2rem !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-cart:hover {
+    background: #4E2ECF !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 20px rgba(78, 46, 207, 0.4) !important;
+}
+
+.btn-cart .badge {
+    background: linear-gradient(135deg, #FF7A01, #FE9100) !important;
+    color: #FFFFFF !important;
+    padding: 0.3rem 0.6rem !important;
+}
+
+/* ===== FORMULÁRIOS ===== */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border: 2px solid rgba(255, 255, 255, 0.1) !important;
+    color: #FFFFFF !important;
+    border-radius: 10px !important;
+    padding: 0.7rem 1.2rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.form-control:focus {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border-color: #4E2ECF !important;
+    box-shadow: 0 0 0 4px rgba(78, 46, 207, 0.2) !important;
+    color: #FFFFFF !important;
+}
+
+.input-group .btn {
+    border-radius: 0 10px 10px 0 !important;
+}
+
+/* ===== CARDS / PRODUTOS ===== */
+.card {
+    background: linear-gradient(145deg, #1a1a40, #252550) !important;
+    border: 1px solid rgba(78, 46, 207, 0.3) !important;
+    border-radius: 16px !important;
+    color: #FFFFFF !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+    padding: 1.5rem !important;
+}
+
+.card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 12px 40px rgba(78, 46, 207, 0.25) !important;
+    border-color: #4E2ECF !important;
+}
+
+.card-title {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.card-text {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* ===== FOOTER ===== */
+.footer-techstore {
+    background: linear-gradient(135deg, #141430, #1a1a3a) !important;
+    border-top: 3px solid #4E2ECF !important;
+    padding: 3rem 0 !important;
+    margin-top: auto !important;
+}
+
+.footer-techstore h5 {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    margin-bottom: 1.5rem !important;
+    position: relative !important;
+    padding-bottom: 10px !important;
+}
+
+.footer-techstore h5::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 40px !important;
+    height: 3px !important;
+    background: linear-gradient(135deg, #FF7A01, #FE9100) !important;
+    border-radius: 10px !important;
+}
+
+@media (max-width: 768px) {
+    .footer-techstore h5::after {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+}
+
+.footer-techstore p {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.footer-techstore ul {
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.footer-techstore ul li {
+    margin-bottom: 10px !important;
+}
+
+.footer-techstore ul li a {
+    color: rgba(255, 255, 255, 0.6) !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.footer-techstore ul li a:hover {
+    color: #FE9100 !important;
+    padding-left: 8px !important;
+}
+
+.footer-techstore hr {
+    border-color: rgba(78, 46, 207, 0.3) !important;
+    margin: 2rem 0 !important;
+}
+
+.footer-techstore .text-muted {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    background-color: #0d0d20 !important;
+    padding: 3rem 0 !important;
+}
+
+/* ===== TÍTULOS ===== */
+h1, h2, h3, h4, h5, h6 {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+}
+
+/* ===== LINKS ===== */
+a:not(.nav-link):not(.btn):not(.navbar-brand) {
+    color: #FE9100 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+}
+
+a:not(.nav-link):not(.btn):not(.navbar-brand):hover {
+    color: #FF7A01 !important;
+}
+
+/* ===== LISTAS ===== */
+ul, ol {
+    color: #e8e8f0 !important;
+}
+
+/* ===== BADGES ===== */
+.badge {
+    font-weight: 600 !important;
+}
+
+/* ===== ALERTAS ===== */
+.alert {
+    background: rgba(78, 46, 207, 0.1) !important;
+    border: 1px solid #4E2ECF !important;
+    color: #FFFFFF !important;
+    border-radius: 12px !important;
+}
+
+/* ===== TABELAS ===== */
+.table {
+    color: #e8e8f0 !important;
+}
+
+.table thead th {
+    background: #4E2ECF !important;
+    color: #FFFFFF !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.table tbody td {
+    border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(78, 46, 207, 0.05) !important;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 10px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: #1D1D42 !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4E2ECF !important;
+    border-radius: 10px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #FF7A01 !important;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 991.98px) {
+    .navbar-techstore .navbar-brand {
+        font-size: 1.4rem !important;
+    }
+    
+    .btn {
+        width: 100% !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .input-group {
+        flex-wrap: nowrap !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .navbar-techstore {
+        padding: 0.8rem 0 !important;
+    }
+    
+    .navbar-techstore .navbar-brand {
+        font-size: 1.2rem !important;
+    }
+    
+    .footer-techstore {
+        text-align: center !important;
+    }
+    
+    .footer-techstore ul {
+        display: inline-block !important;
+        text-align: left !important;
+    }
+}
