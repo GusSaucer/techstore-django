@@ -4,7 +4,7 @@ from django.shortcuts import render
 def home_view(request):
     context = {
         'nome_empresa': 'TechStore 🐸',
-        'produtos': ['Smartphone', 'PC Gamer', 'Monitor', 'Smartwatch', 'Cadeira Gamer']
+        'produtos': ['Smartphone', 'PC Gamer', 'Monitor', 'Smartwatch']
     }
     return render(request,'home.html', context)
 
