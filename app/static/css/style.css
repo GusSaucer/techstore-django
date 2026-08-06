@@ -171,6 +171,10 @@ html, body {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
+.card .badge{
+    background-color: red;
+}
+
 /* ===== FOOTER ===== */
 .footer-techstore {
     background: linear-gradient(135deg, #141430, #1a1a3a) !important;

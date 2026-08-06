@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for i in produtos %}
+{% if not i.estoque == 0 %}
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{i.nome}}</h5>
+    {% if i.desconto %}
+    <span class="badge">DESCONTO</span></h1>
+    {% endif %}
+    <p class="card-text">R$ {{i.preco}}</p>
+    <a href="#" class="btn btn-primary">Comprar</a>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

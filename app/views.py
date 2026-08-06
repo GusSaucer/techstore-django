@@ -1,10 +1,10 @@
 from django.shortcuts import render
+from .models import Produto
 
 # Create your views here.
 def home_view(request):
     context = {
-        'nome_empresa': 'TechStore 🐸',
-        'produtos': ['Smartphone', 'PC Gamer', 'Monitor', 'Smartwatch']
+
     }
     return render(request,'home.html', context)
 
@@ -16,10 +16,11 @@ def perfil_view(request):
     }
     return render(request,'perfil.html', context)
 
-def status_view(request):
+def produtos_view(request):
+    produtos = Produto.objects.all()
+
     context = {
-        'id_servidor': '145761',
-        'status_sistema': '200 OK',
-        'admin':True,
+        'produtos':produtos
     }
-    return render(request,'status.html', context)
+
+    return render(request,'produtos.html', context)
