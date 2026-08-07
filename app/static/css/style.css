@@ -171,6 +171,18 @@ html, body {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
+.modal-content {
+    background: linear-gradient(145deg, #4E2ECF, #6b4edb) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 16px !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 12px 40px rgba(78, 46, 207, 0.35) !important;
+}
+
+.modal-backdrop {
+    background-color: rgba(29, 29, 66, 0.75) !important;
+}
+
 /* ===== FOOTER ===== */
 .footer-techstore {
     background: linear-gradient(135deg, #141430, #1a1a3a) !important;
