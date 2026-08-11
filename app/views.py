@@ -18,14 +18,26 @@ def perfil_view(request):
     return render(request,'perfil.html', context)
 
 def produtos_view(request):
-
     produtos = Produto.objects.all()
 
     if request.method == 'POST':
-        form = ProdutoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('produtos')
+        action = request.POST.get('action')
+        
+        # Lógica para Editar / Update
+        if action == 'update':
+            produto_id = request.POST.get('produto_id')
+            produto = get_object_or_404(Produto, id=produto_id)
+            form = ProdutoForm(request.POST, instance=produto)
+            if form.is_valid():
+                form.save()
+                return redirect('produtos')
+
+        # Lógica para Criar / Create
+        else:
+            form = ProdutoForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('produtos')
     else:
         form = ProdutoForm()
 
@@ -33,5 +45,5 @@ def produtos_view(request):
         'produtos': produtos,
         'form': form
     }
-    return render(request,'produtos.html', context)
+    return render(request, 'produtos.html', context)
 

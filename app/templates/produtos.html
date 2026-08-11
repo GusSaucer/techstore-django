@@ -1,49 +1,92 @@
 {% extends 'base.html' %}
 {% block content %}
 
-{% for i in produtos %}
-{% if i.estoque > 0 %}
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ i.id }}">
-      ✏️
-    </button>
-    <h5 class="card-title">{{ i.nome }}</h5>
-    {% if i.desconto %}
-    <span class="badge" style="background-color:red; color:white;">DESCONTO</span>
-    {% endif %}
-    <p class="card-text">R$ {{ i.preco }}</p>
-    <a href="#" class="btn btn-primary">Comprar</a>
+<div class="container my-4">
+  <!-- Botão para Criar -->
+  <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#create_produto">
+    Cadastrar novo produto
+  </button>
+
+  <!-- Container Grid para alinhar cards lado a lado -->
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for i in produtos %}
+      {% if i.estoque > 0 %}
+        <div class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              <!-- Botão Editar apontando para o modal específico do produto -->
+              <button type="button" class="btn btn-outline-secondary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#updateModal{{ i.id }}">
+                ✏️
+              </button>
+              <h5 class="card-title">{{ i.nome }}</h5>
+              {% if i.desconto %}
+                <span class="badge bg-danger">DESCONTO</span>
+              {% endif %}
+              <p class="card-text mt-2">R$ {{ i.preco }}</p>
+              <a href="#" class="btn btn-primary">Comprar</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal de Atualização Dinâmico para cada produto -->
+        <div class="modal fade" id="updateModal{{ i.id }}" tabindex="-1" aria-labelledby="updateModalLabel{{ i.id }}" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel{{ i.id }}">Editar {{ i.nome }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form method="POST" action="{% url 'produtos' %}">
+                {% csrf_token %}
+                <input type="hidden" name="produto_id" value="{{ i.id }}">
+                <div class="modal-body">
+                  <!-- Renderiza o form preenchido com dados via View ou campos básicos -->
+                  <div class="mb-3">
+                    <label class="form-label">Nome</label>
+                    <input type="text" name="nome" value="{{ i.nome }}" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Preço</label>
+                    <input type="number" step="0.01" name="preco" value="{{ i.preco }}" class="form-control" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Estoque</label>
+                    <input type="number" name="estoque" value="{{ i.estoque }}" class="form-control" required>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                  <button type="submit" name="action" value="update" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal{{ i.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{ i.id }}" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<!-- Modal de Criação (Fora do loop for) -->
+<div class="modal fade" id="create_produto" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel{{ i.id }}">{{ i.nome }}</h5>
+        <h5 class="modal-title" id="createModalLabel">Cadastre um novo produto</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-
-        <form method="POST">
-
-          {% csrf_token %}
-          {{form.as_p}}
-
-          <button type="submit" class="btn btn-primary">Salvar</button>
-        </form>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-      </div>
+      <form method="POST" action="{% url 'produtos' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+          {{ form.as_p }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="submit" name="action" value="create" class="btn btn-primary">Salvar Produto</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
-
-{% endif %}
-{% endfor %}
 
 {% endblock %}
