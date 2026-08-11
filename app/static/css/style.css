@@ -171,6 +171,30 @@ html, body {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
+/* Garante o esconde da fita quando ela sair dos limites do card */
+  .card-ribbon-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Estilização da faixa na diagonal */
+  .ribbon-discount {
+    position: absolute;
+    top: 18px;
+    right: -35px;
+    transform: rotate(45deg);
+    width: 130px;
+    background-color: #dc3545; /* Cor vermelha do badge */
+    color: #ffffff;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 4px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+
 .modal-content {
     background: linear-gradient(145deg, #4E2ECF, #6b4edb) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
