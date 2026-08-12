@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if perms.app.add_produto %}
 <div class="container my-4">
   <button type="button" class="btn btn-tech-primary mb-4" data-bs-toggle="modal" data-bs-target="#create_produto">
     Cadastrar novo produto
   </button>
+{% endif %}
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for i in produtos %}
@@ -21,9 +23,11 @@
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5 class="card-title mb-0">{{ i.nome }}</h5>
+                {% if perms.app.change_produto %}
                 <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#updateModal{{ i.id }}">
                   ✏️
                 </button>
+                {% endif %}
               </div>
 
               <p class="card-text fw-bold mb-1">R$ {{ i.preco }}</p>

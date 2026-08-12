@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from.models import Produto
 from .forms import ProdutoForm
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def home_view(request):
