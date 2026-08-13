@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from.models import Produto
 from .forms import ProdutoForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
@@ -18,6 +19,16 @@ def perfil_view(request):
         'setor': 'T.I.',
     }
     return render(request,'perfil.html', context)
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
 def produtos_view(request):
     # Opcional: filtrar direto no banco produtos não apagados -> Produto.objects.filter(apagado=False)
