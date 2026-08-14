@@ -3,6 +3,8 @@ from.models import Produto
 from .forms import ProdutoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from .forms import ProfileUpdateForm
 
 
 # Create your views here.
@@ -12,13 +14,20 @@ def home_view(request):
     }
     return render(request,'home.html', context)
 
+@login_required
 def perfil_view(request):
-    context = {
-        'nome_funcionario': 'Gustavo',
-        'cargo': 'Professor',
-        'setor': 'T.I.',
-    }
-    return render(request,'perfil.html', context)
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Seu perfil foi atualizado com sucesso!')
+            return redirect('perfil')
+        else:
+            messages.error(request, 'Por favor, corrija os erros abaixo.')
+    else:
+        form = ProfileUpdateForm(instance=request.user)
+
+    return render(request, 'perfil.html', {'form': form})
 
 def signup_view(request):
     if request.method == 'POST':

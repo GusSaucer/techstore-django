@@ -1,9 +1,159 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}TechStore - Meu Perfil{% endblock %}
+
 {% block content %}
+<div class="container" style="max-width: 720px;">
+    
+    <!-- Cabeçalho da Página -->
+    <div class="d-flex align-items-center mb-4">
+        <div class="rounded-circle d-flex align-items-center justify-content-center text-white me-3" style="width: 64px; height: 64px; font-size: 1.8rem; background-color: #3b82f6;">
+            👤
+        </div>
+        <div>
+            <h2 class="fw-bold text-white mb-0">Meu Perfil</h2>
+            <p class="text-muted small mb-0">Gerencie suas informações pessoais e credenciais</p>
+        </div>
+        <div>
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger mx-5 px-3 py-2 fw-semibold">
+                    🚪 Sair da conta
+                </button>
+            </form>
+        </div>
+    </div>
 
+    <!-- Feedback de Sucesso / Erro -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show small mb-4" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
 
-    <p>{{ nome_funcionario }}</p>
-    <p>{{ cargo }}</p>
-    <p>{{ setor }}</p>
+    <!-- Card Principal -->
+    <div class="card shadow-lg border-0 rounded-4" style="background-color: #1a1c2e;">
+        <div class="card-body p-4 p-md-5">
+            
+            <form method="POST" action="{% url 'perfil' %}">
+                {% csrf_token %}
 
+                <!-- Mensagens de erro globais do Form -->
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger alert-dismissible fade show small" role="alert">
+                        {% for error in form.non_field_errors %}
+                            {{ error }}
+                        {% endfor %}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+
+                <h5 class="text-white fw-bold mb-3 border-bottom border-secondary pb-2 opacity-75">Informações Pessoais</h5>
+
+                <div class="row g-3 mb-4">
+                    <!-- Primeiro Nome -->
+                    <div class="col-md-6">
+                        <label for="{{ form.first_name.id_for_label }}" class="form-label text-white small fw-semibold">Nome</label>
+                        <input 
+                            type="text" 
+                            name="{{ form.first_name.html_name }}" 
+                            id="{{ form.first_name.id_for_label }}" 
+                            class="form-control form-control-dark {% if form.first_name.errors %}is-invalid{% endif %}"
+                            value="{{ form.first_name.value|default:user.first_name }}"
+                            placeholder="Seu nome"
+                        >
+                        {% if form.first_name.errors %}
+                            <div class="invalid-feedback small">
+                                {% for error in form.first_name.errors %}{{ error }}{% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Sobrenome -->
+                    <div class="col-md-6">
+                        <label for="{{ form.last_name.id_for_label }}" class="form-label text-white small fw-semibold">Sobrenome</label>
+                        <input 
+                            type="text" 
+                            name="{{ form.last_name.html_name }}" 
+                            id="{{ form.last_name.id_for_label }}" 
+                            class="form-control form-control-dark {% if form.last_name.errors %}is-invalid{% endif %}"
+                            value="{{ form.last_name.value|default:user.last_name }}"
+                            placeholder="Seu sobrenome"
+                        >
+                        {% if form.last_name.errors %}
+                            <div class="invalid-feedback small">
+                                {% for error in form.last_name.errors %}{{ error }}{% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <h5 class="text-white fw-bold mb-3 border-bottom border-secondary pb-2 opacity-75">Dados da Conta</h5>
+
+                <div class="row g-3 mb-4">
+                    <!-- Username -->
+                    <div class="col-md-6">
+                        <label for="{{ form.username.id_for_label }}" class="form-label text-white small fw-semibold">Nome de Usuário</label>
+                        <input 
+                            type="text" 
+                            name="{{ form.username.html_name }}" 
+                            id="{{ form.username.id_for_label }}" 
+                            class="form-control form-control-dark {% if form.username.errors %}is-invalid{% endif %}"
+                            value="{{ form.username.value|default:user.username }}"
+                            required
+                        >
+                        {% if form.username.errors %}
+                            <div class="invalid-feedback small">
+                                {% for error in form.username.errors %}{{ error }}{% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- E-mail -->
+                    <div class="col-md-6">
+                        <label for="{{ form.email.id_for_label }}" class="form-label text-white small fw-semibold">E-mail</label>
+                        <input 
+                            type="email" 
+                            name="{{ form.email.html_name }}" 
+                            id="{{ form.email.id_for_label }}" 
+                            class="form-control form-control-dark {% if form.email.errors %}is-invalid{% endif %}"
+                            value="{{ form.email.value|default:user.email }}"
+                            placeholder="seu@email.com"
+                            required
+                        >
+                        {% if form.email.errors %}
+                            <div class="invalid-feedback small">
+                                {% for error in form.email.errors %}{{ error }}{% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Botões de Ação do Form -->
+                <div class="d-flex justify-content-between align-items-center pt-3 border-top border-secondary opacity-75">
+                    <a href="{% url 'password_change' %}" class="text-decoration-none small text-muted hover-light">
+                        🔒 Alterar senha
+                    </a>
+                    <button type="submit" class="btn btn-tech-primary px-4 py-2 fw-semibold">
+                        Salvar Alterações
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- Zona de Perigo / Logout -->
+            <div class="pt-4 mt-4 border-top border-secondary opacity-50 d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="text-white small fw-semibold d-block">Sessão</span>
+                    <span class="text-muted extra-small" style="font-size: 0.8rem;">Deseja encerrar seu acesso nesta máquina?</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 {% endblock %}

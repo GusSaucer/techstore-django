@@ -28,7 +28,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarContent">
-                <!-- Lógica Dinâmica da Classe 'active' -->
+                <!-- Links Principais -->
                 <ul class="navbar-nav me-auto ms-lg-4">
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" 
@@ -44,18 +44,28 @@
                     </li>
                 </ul>
                 
-                <!-- Busca -->
-                <form class="d-flex me-3" role="search" method="GET" action="#">
-                    <div class="input-group">
-                        <input type="search" name="q" class="form-control" placeholder="Buscar produtos...">
-                        <button class="btn btn-tech-secondary" type="submit">Buscar</button>
-                    </div>
-                </form>
+                <!-- Ações do Usuário (Carrinho + Auth) -->
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <!-- Carrinho -->
+                    <a href="#" class="btn btn-cart me-2">
+                        🛒 Carrinho <span class="badge bg-light text-dark rounded-pill ms-1">0</span>
+                    </a>
 
-                <!-- Carrinho -->
-                <a href="#" class="btn btn-cart">
-                    🛒 Carrinho <span class="badge bg-light text-dark rounded-pill ms-1">0</span>
-                </a>
+                    {% if user.is_authenticated %}
+                        <!-- Usuário Logado -->
+                        <a href="{% url 'perfil' %}" class="btn btn-cart me-2">
+                            👤 {{ user.username }}
+                        </a>
+                        <form method="post" action="{% url 'logout' %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link text-muted p-0 text-decoration-none small ms-2">Sair</button>
+                        </form>
+                    {% else %}
+                        <!-- Usuário Anônimo -->
+                        <a href="{% url 'login' %}" class="btn btn-tech-primary">Entrar</a>
+                        <a href="{% url 'signup' %}" class="btn btn-cart me-2">Cadastrar</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </nav>
